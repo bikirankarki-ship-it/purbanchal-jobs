@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purbanchal Jobs</title>
+    <!-- Use Tailwind CSS for a modern, responsive design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        /* Custom CSS for the animated text */
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .animated-text {
+            animation: fadeInOut 4s ease-in-out infinite;
+        }
+
+        /* Message box styles */
+        .message-box {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 1rem 2rem;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Message Box for User Feedback -->
+    <div id="messageBox" class="message-box"></div>
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md w-full">
+        <div class="container mx-auto px-4 py-4 md:py-6 flex justify-between items-center">
+            <!-- Website Title -->
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-800 tracking-tight">
+                Purbanchal Jobs
+            </h1>
+            
+            <!-- Navigation/Auth Buttons -->
+            <nav class="flex items-center space-x-2 md:space-x-4">
+                <!-- Sign-In Button -->
+                <button 
+                    onclick="showMessage('Sign-In functionality would go here.')"
+                    class="px-4 py-2 text-sm md:text-base font-semibold text-white bg-blue-600 rounded-full shadow-md hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                >
+                    Sign-In
+                </button>
+
+                <!-- Sign-Up Button -->
+                <button 
+                    onclick="showSection('signup-options-view')"
+                    class="px-4 py-2 text-sm md:text-base font-semibold text-white bg-blue-600 rounded-full shadow-md hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                >
+                    Sign-Up
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section - Contains all views -->
+    <main class="container mx-auto mt-8 px-4 py-8 flex-grow">
+        <!-- Main Landing View (Initial View) -->
+        <div id="intro-view" class="bg-white rounded-lg shadow-md p-6 md:p-8">
+            <div class="animated-text text-xl md:text-2xl font-semibold mb-4 text-gray-800 text-center">
+                We connect employee with employer
+            </div>
+        </div>
+
+        <!-- Signup Options View (Hidden by default) -->
+        <div id="signup-options-view" class="hidden bg-white rounded-lg shadow-md p-6 md:p-8 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-800">Choose Your Path</h2>
+            <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8">
+                <button 
+                    onclick="showSection('jobseeker-form-view')"
+                    class="w-full md:w-auto px-6 py-4 text-lg font-semibold text-white bg-green-600 rounded-lg shadow-lg hover:bg-green-700 transition-colors duration-300"
+                >
+                    Jobseeker
+                </button>
+                <button 
+                    onclick="showMessage('Employer functionality is not yet implemented.')"
+                    class="w-full md:w-auto px-6 py-4 text-lg font-semibold text-white bg-blue-600 rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-300"
+                >
+                    Employer
+                </button>
+            </div>
+            <button 
+                onclick="showSection('intro-view')"
+                class="mt-8 text-sm text-gray-500 hover:text-gray-700 transition-colors duration-300"
+            >
+                &larr; Go Back
+            </button>
+        </div>
+
+        <!-- Jobseeker Form View (Hidden by default) -->
+        <div id="jobseeker-form-view" class="hidden bg-white rounded-lg shadow-md p-6 md:p-8">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-800 text-center">Jobseeker Registration</h2>
+            <form id="jobseeker-form" class="space-y-6">
+                <!-- Full Name -->
+                <div>
+                    <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+
+                <!-- Age -->
+                <div>
+                    <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
+                    <input type="number" id="age" name="age" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+
+                <!-- Contact Number -->
+                <div>
+                    <label for="contactNumber" class="block text-sm font-medium text-gray-700">Contact Number</label>
+                    <input type="tel" id="contactNumber" name="contactNumber" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+
+                <!-- Email Address -->
+                <div>
+                    <label for="emailAddress" class="block text-sm font-medium text-gray-700">Email Address</label>
+                    <input type="email" id="emailAddress" name="emailAddress" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+
+                <!-- Sex -->
+                <div>
+                    <label for="sex" class="block text-sm font-medium text-gray-700">Sex</label>
+                    <select id="sex" name="sex" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="">Select your sex</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <!-- Your Location -->
+                <div>
+                    <label for="location" class="block text-sm font-medium text-gray-700">Your Location</label>
+                    <input type="text" id="location" name="location" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+
+                <!-- Years of Experience -->
+                <div>
+                    <label for="yearsExperience" class="block text-sm font-medium text-gray-700">Years of Experience</label>
+                    <input type="number" id="yearsExperience" name="yearsExperience" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+
+                <!-- Resume Upload -->
+                <div>
+                    <label for="resume" class="block text-sm font-medium text-gray-700">Upload Resume</label>
+                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                </div>
+
+                <!-- Submit Button -->
+                <button 
+                    type="submit"
+                    class="w-full px-4 py-2 text-lg font-semibold text-white bg-green-600 rounded-md shadow-lg hover:bg-green-700 transition-colors duration-300"
+                >
+                    Submit
+                </button>
+            </form>
+            <button 
+                onclick="showSection('signup-options-view')"
+                class="mt-4 text-sm text-gray-500 hover:text-gray-700 transition-colors duration-300"
+            >
+                &larr; Go Back
+            </button>
+        </div>
+
+        <!-- New Page: Set Username and Password View -->
+        <div id="set-credentials-view" class="hidden bg-white rounded-lg shadow-md p-6 md:p-8">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-800 text-center">Create Your Account</h2>
+            <form id="credentials-form" class="space-y-6">
+                <!-- Username -->
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                    <input type="text" id="username" name="username" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="password" name="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+
+                <!-- Submit Button -->
+                <button 
+                    type="submit"
+                    class="w-full px-4 py-2 text-lg font-semibold text-white bg-green-600 rounded-md shadow-lg hover:bg-green-700 transition-colors duration-300"
+                >
+                    Finish Registration
+                </button>
+            </form>
+            <button 
+                onclick="showSection('jobseeker-form-view')"
+                class="mt-4 text-sm text-gray-500 hover:text-gray-700 transition-colors duration-300"
+            >
+                &larr; Go Back
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-4 mt-8">
+        <div class="container mx-auto text-center text-sm text-gray-400">
+            &copy; 2024 Purbanchal Jobs. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Get all the view containers
+        const introView = document.getElementById('intro-view');
+        const signupOptionsView = document.getElementById('signup-options-view');
+        const jobseekerFormView = document.getElementById('jobseeker-form-view');
+        const setCredentialsView = document.getElementById('set-credentials-view');
+        const messageBox = document.getElementById('messageBox');
+
+        /**
+         * Hides all content sections and shows the specified one.
+         * @param {string} viewId The ID of the section to show.
+         */
+        function showSection(viewId) {
+            introView.classList.add('hidden');
+            signupOptionsView.classList.add('hidden');
+            jobseekerFormView.classList.add('hidden');
+            setCredentialsView.classList.add('hidden');
+
+            document.getElementById(viewId).classList.remove('hidden');
+        }
+
+        /**
+         * Displays a temporary message to the user.
+         * @param {string} message The message text.
+         */
+        function showMessage(message) {
+            messageBox.textContent = message;
+            messageBox.style.display = 'block';
+            setTimeout(() => {
+                messageBox.style.display = 'none';
+            }, 3000); // Hide after 3 seconds
+        }
+
+        // Form Submission Handler for Jobseeker form
+        document.getElementById('jobseeker-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // In a real application, you would handle form data submission here
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+            console.log('Jobseeker form data submitted:', data);
+            
+            // Redirect to the next page for setting credentials
+            showSection('set-credentials-view');
+        });
+
+        // Form Submission Handler for Credentials form
+        document.getElementById('credentials-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+            console.log('Credentials form data submitted:', data);
+            showMessage('Account created successfully!');
+            
+            // Reset the form or navigate back to the main page
+            setTimeout(() => {
+                showSection('intro-view');
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
